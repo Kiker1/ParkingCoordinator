@@ -5,15 +5,18 @@
  */
 package parkingcoordinator.logicLevel;
 
+import java.util.Date;
+
 /**
  *
  * @author Kiker
  */
 public abstract class PassengerRequest extends Request
 {
-    public PassengerRequest()
-    {
-    }
 
+    public PassengerRequest(Date date)
+    {
+	super(date);
+    }
   
 }

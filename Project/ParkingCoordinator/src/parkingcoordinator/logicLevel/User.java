@@ -13,16 +13,18 @@ import java.util.List;
  */
 public abstract class User implements Storable 
 {
-
-
     private final String login;
-
     private final String pass;
 
     public User(String login, String pass)
     {
 	this.login = login;
 	this.pass = pass;
+    }
+    
+    protected User(User u)
+    {
+	this(u.login, u.pass);
     }
 
     public String getLogin()
@@ -35,9 +37,12 @@ public abstract class User implements Storable
 	return pass;
     }
     
-    public abstract void createRequest(Request requset);
-    public abstract void deleteRequest(Request requset);
+    public void createRequest(Request requset)
+    {
+	requset.setUser(this);
+	requset.save();
+    }
+	    
     public abstract List<Request> getAllRequests();
-    
-    public abstract void addNewUser(User user);
+
 }

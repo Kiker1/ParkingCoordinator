@@ -20,8 +20,9 @@ public abstract class DriverRequest extends Request
     private Request.State state;
         
 
-    public DriverRequest(Date entryTime, Date leaveTime, int freePlaces, Parking parking)
+    public DriverRequest(Date creationDate, Date entryTime, Date leaveTime, int freePlaces, Parking parking)
     {
+	super(creationDate);
 	this.entryTime = entryTime;
 	this.leaveTime = leaveTime;
 	this.freePlaces = freePlaces;
@@ -36,5 +37,32 @@ public abstract class DriverRequest extends Request
     
     public abstract void addPassengerRequest(PassengerRequest request);
     public abstract void removePassengerRequest(PassengerRequest request);
+
+    public Date getEntryDate()
+    {
+	return entryTime;
+    }
+
+    public Date getLeaveDate()
+    {
+	return leaveTime;
+    }
+
+    public Parking getParking()
+    {
+	return parking;
+    }
+
+    public int getFreePlaces()
+    {
+	return freePlaces;
+    }
+
+    public State getState()
+    {
+	return state;
+    }
+    
+    
     
 }

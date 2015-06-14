@@ -11,18 +11,25 @@ package parkingcoordinator.logicLevel;
  */
 public abstract class Parking implements Storable
 {
+    private String comment;
     private String address;
-    private int freeSpace;
     private int freeSpaceLeft;
+    
+    public Parking(int freePlaces, String address, String comment)
+    {
+	this.freeSpaceLeft = freePlaces;
+	this.address = address;
+	this.comment = comment;
+    }
 
     public String getAddress()
     {
 	return address;
     }
 
-    public int getFreeSpace()
+    public String getComment()
     {
-	return freeSpace;
+	return comment;
     }
 
     public int getFreeSpaceLeft()
@@ -32,9 +39,6 @@ public abstract class Parking implements Storable
     
     public void freeOnePlace()
     {
-	if (freeSpaceLeft == freeSpace)
-	    throw new IllegalStateException("Cant free when freeSpaceLeft == freeSpace");
-	
 	freeSpaceLeft++;
 	save();
     }

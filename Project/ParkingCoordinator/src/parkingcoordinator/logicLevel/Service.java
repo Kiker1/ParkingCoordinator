@@ -5,6 +5,7 @@
  */
 package parkingcoordinator.logicLevel;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,7 +13,7 @@ import java.util.TimerTask;
  *
  * @author Kiker
  */
-public class Service
+public abstract class Service
 {
     Timer timer = new Timer();
     public Service()
@@ -25,11 +26,18 @@ public class Service
 	    {
 		System.out.println("Timer!");
 	    }
-	}, 0, 1000);
+	}, 0, 10000);
+	
     }
     
-//    public List<Request> getAllRequestToClose()
-//    {
-////	List<Request> = 
-//    }
+    public abstract List<Request> getAllRequestToClose();
+    
+    public abstract boolean addNewUser(User user);
+    
+    public abstract List<Parking> getAllParkings();
+
+    public void stop()
+    {
+	timer.cancel();
+    }
 }

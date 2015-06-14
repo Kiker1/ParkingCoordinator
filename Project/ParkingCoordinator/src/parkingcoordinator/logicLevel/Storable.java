@@ -12,4 +12,5 @@ package parkingcoordinator.logicLevel;
 public interface Storable
 {
     void save();
+    void remove();
 }

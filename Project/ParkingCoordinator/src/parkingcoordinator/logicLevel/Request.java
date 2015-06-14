@@ -15,12 +15,23 @@ import java.util.List;
 public abstract class Request implements Storable
 {
     private final Date date;
+    private User user;
     
-    public Request()
+    public Request(Date date)
     {
-	this.date = new Date();
+	this.date = date;
+    }
+    
+    public void setUser(User user)
+    {
+	this.user = user;
     }
 
+    public Date getCreationDate()
+    {
+	return date;
+    }
+    
     public static enum State {Open, Closed};
     
     public abstract List<Request> getTimeOutRequestsToClose();

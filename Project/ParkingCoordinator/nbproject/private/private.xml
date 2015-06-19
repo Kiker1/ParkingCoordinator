@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Study/10sem/SoftwareArch/ParkingCoordinator/Project/ParkingCoordinator/test/dataLevel/DBParkingTest.java</file>
             <file>file:/D:/Study/10sem/SoftwareArch/ParkingCoordinator/Project/ParkingCoordinator/src/dataLevel/DBService.java</file>
+            <file>file:/D:/Study/10sem/SoftwareArch/ParkingCoordinator/Project/ParkingCoordinator/src/logicLevel/Service.java</file>
             <file>file:/D:/Study/10sem/SoftwareArch/ParkingCoordinator/Project/ParkingCoordinator/src/serviceLevel/impl/UserServiceImpl.java</file>
+            <file>file:/D:/Study/10sem/SoftwareArch/ParkingCoordinator/Project/ParkingCoordinator/src/dataLevel/DBDriverRequest.java</file>
         </group>
     </open-files>
 </project-private>

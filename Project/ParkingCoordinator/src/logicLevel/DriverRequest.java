@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parkingcoordinator.logicLevel;
+package logicLevel;
 
 import java.util.Date;
 
@@ -17,27 +17,32 @@ public abstract class DriverRequest extends Request
     private final Date leaveTime;
     private final Parking parking;
     private int freePlaces;
-    private Request.State state;
+
         
 
-    public DriverRequest(Date creationDate, Date entryTime, Date leaveTime, int freePlaces, Parking parking)
+    public DriverRequest(Date creationDate, Date entryTime, Date leaveTime, int freePlaces, Parking parking, Status status)
     {
-	super(creationDate);
+	super(creationDate, status);
 	this.entryTime = entryTime;
 	this.leaveTime = leaveTime;
 	this.freePlaces = freePlaces;
 	this.parking = parking;
-	this.state = Request.State.Open;
     }
     
-    public void changeState(Request.State state)
+//    public DriverRequest(DriverRequest request)
+//    {
+//        super(request.getCreationDate(), request.getStatus());
+//        this.entryTime = request.getEntryDate();
+//	this.leaveTime = request.getLeaveDate();
+//	this.freePlaces = request.getFreePlaces();
+//	this.parking = request.getParking();
+//    }
+    
+    public void changeState(Request.Status state)
     {
-	this.state = state;
+	this.status = state;
     }
     
-    public abstract void addPassengerRequest(PassengerRequest request);
-    public abstract void removePassengerRequest(PassengerRequest request);
-
     public Date getEntryDate()
     {
 	return entryTime;
@@ -57,12 +62,26 @@ public abstract class DriverRequest extends Request
     {
 	return freePlaces;
     }
-
-    public State getState()
+    
+    public void freeOnePlace()
     {
-	return state;
+	freePlaces++;
+	save();
     }
     
+    public void takeOnePlace() 
+    {
+	if (freePlaces == 0)
+	    throw new IllegalStateException("Cant take when freePlaces == 0");
+
+	freePlaces--;
+	save();
+    }
+
+    public void setClosedStatus()
+    {
+	status = Status.Closed;
+    }
     
     
 }

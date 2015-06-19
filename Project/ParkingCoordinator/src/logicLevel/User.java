@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parkingcoordinator.logicLevel;
+package logicLevel;
 
 import java.util.List;
 
@@ -37,12 +37,14 @@ public abstract class User implements Storable
 	return pass;
     }
     
-    public void createRequest(Request requset)
-    {
-	requset.setUser(this);
-	requset.save();
-    }
+    public abstract String registerThisUser();
+    public abstract String loginAsThisUser();
+//    public void createRequest(Request requset)
+//    {
+//	requset.setUser(this);
+//	requset.save();
+//    }
 	    
-    public abstract List<Request> getAllRequests();
+//    public abstract List<Request> getAllRequests();
 
 }

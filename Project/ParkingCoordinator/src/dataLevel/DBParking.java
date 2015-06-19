@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import parkingcoordinator.logicLevel.Parking;
+import logicLevel.Parking;
 
 /**
  *
@@ -36,7 +36,8 @@ public class DBParking extends Parking
     @Override
     public void save()
     {
-	String str = "INSERT INTO PARKING(ID, FREE_PLACES, COMMENTS, ADDRESS) VALUES (?,?,?,?)";
+	String str = "INSERT INTO PARKING(ID, FREE_PLACES, COMMENTS, ADDRESS) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE "
+                + "FREE_PLACES = ?";
 	
 	try
 	{
@@ -51,8 +52,10 @@ public class DBParking extends Parking
 	    
 	    ps.setInt(2, getFreeSpaceLeft());
 	    ps.setString(3, getComment());
-	    ps.setString(3, getAddress());
+	    ps.setString(4, getAddress());
 	    
+             ps.setInt(5, getFreeSpaceLeft());
+            
 	    ps.execute();
 	    ResultSet rs = ps.getGeneratedKeys();
 	    if (rs.next())

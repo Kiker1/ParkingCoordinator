@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parkingcoordinator.logicLevel;
+package logicLevel;
 
 import java.util.Date;
 
@@ -13,10 +13,18 @@ import java.util.Date;
  */
 public abstract class PassengerRequest extends Request
 {
-
-    public PassengerRequest(Date date)
+    private DriverRequest driverRequest;
+    public PassengerRequest(Date date, DriverRequest driverRequest, Status status)
     {
-	super(date);
+	super(date, status);
+	this.driverRequest = driverRequest;
     }
-  
+
+    public DriverRequest getDriverRequest()
+    {
+	return driverRequest;
+    }
+    
+    
+    
 }

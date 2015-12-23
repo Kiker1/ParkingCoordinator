@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <head>
+        <title>createDriverRequset</title>
+        <link type="text/css" rel="stylesheet" href="/resources/css/jsfcrud.css?ln=css" />
+    </head>
+    <body>
+        <div>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="EnterDate: " />
+                    <h:inputText id="enterDate" value="#{createDriverRequestBean.request.enterDate}" pt:placeholder="01-01-2015 00:00"
+                                 required="true" size="11" requiredMessage="Please, fill this field.">  
+                        <f:convertDateTime pattern="dd-MM-yyyy hh:mm"/>  
+                    </h:inputText>
+                    <h:message for="enterDate" class="error_message" />
+
+                    <h:outputLabel value="LeaveDate: " />
+                    <h:inputText id="leaveDate" value="#{createDriverRequestBean.request.leaveDate}" pt:placeholder="01-01-2015 00:01"
+                                 required="true" size="11" requiredMessage="Please, fill this field.">  
+                        <f:convertDateTime pattern="dd-MM-yyyy hh:mm"/>  
+                    </h:inputText>
+                    <h:message for="leaveDate" class="error_message" />
+
+                    <h:outputLabel value="FreePlaces: " />
+                    <h:inputText id="freePlacesLeft" value="#{createDriverRequestBean.request.freePlacesLeft}" pt:placeholder="1"
+                                 required="true" size="1" requiredMessage="Please, fill this field.">  
+                    </h:inputText>
+                    <h:message for="freePlacesLeft" class="error_message" />
+
+                    <h:outputLabel value="ParkingId: " />
+                    <h:selectOneMenu value="#{createDriverRequestBean.request.parkingId}"
+                                     converter="#{parkingConverterBean}">
+                        <f:selectItems value="#{serviceBean.allParkings}" var="r"
+                                       itemLabel="#{r.toString()}" itemValue="#{r}" />
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+                <h:commandButton action="#{createDriverRequestBean.create()}" value="Create"/>    
+            </h:form>
+            <br/>
+            <h:button value="home" outcome="/user/home.xhtml" />
+        </div>
+    </body>
+</html>

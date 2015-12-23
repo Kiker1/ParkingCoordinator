@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <head>
+        <title>Home</title>
+        <link type="text/css" rel="stylesheet" href="/resources/css/jsfcrud.css?ln=css" />
+    </head>
+    <body>
+        <div>
+            <h:form>
+                My Passengers requests
+                <h:dataTable value="#{serviceBean.getPassReqDataModel(userLoginBean.currentUser)}" var="req">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{req.idpassengerRequest}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Creation date</f:facet>
+                            #{req.creationDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                            #{req.driverRequestid.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton action="#{serviceBean.removePassengerRequest(req)}" value="X"/>   
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+
+        <div>
+            <h:form>
+                My Drivers requests
+
+                <h:dataTable value="#{serviceBean.getDriverReqDataModel(userLoginBean.currentUser)}" var="req">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                            #{req.iddriverRequest}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Creation date</f:facet>
+                            #{req.creationDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                            #{req.parkingId.address}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Enter date</f:facet>
+                            #{req.enterDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Leave date</f:facet>
+                            #{req.leaveDate}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Free places</f:facet>
+                            #{req.freePlacesLeft}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Parking</f:facet>
+                        <h:link outcome="/user/parkings.xhtml">
+                            <f:param name="id" value="#{req.parkingId.idparking}"/>
+                            #{req.parkingId.address}
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Status</f:facet>
+                            #{req.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandButton action="#{serviceBean.removeDriverRequest(req)}" value="X"/>   
+                    </h:column>
+
+                </h:dataTable>
+            </h:form>
+        </div>
+
+        <h:button value="List parkings" outcome="/user/parkings.xhtml" />
+        <br/><br/>
+        <h:button value="Create passenger request" outcome="/user/createPassengerRequest.xhtml" />
+        <br/><br/>
+        <h:button value="Create driver request" outcome="/user/createDriverRequest.xhtml" />
+        <br/><br/>
+        <h:button value="List all available driver requests" outcome="/user/driverRequests.xhtml" />
+        <br/><br/>
+        <!--<h:commandButton action="" value="LogOut"/>-->
+    </body>
+</html>
